@@ -5,6 +5,7 @@
 .noSee{ 			display: none;}
 .Altfont{ 			font-family: "Calibri";}
 .BlockFix{			display: block; overflow: hidden}
+.defBord{ 			border: solid 1px @ColorB; }
 .BdZ{ 				border: none; }
 .ClearFix { 		clear: both;}
 .FLeft{				float:left;}
@@ -19,9 +20,11 @@
 
 /* Measurements */
 @thumbWH: 120px;
-@lineHe: 20px;
+@lineHe: 30px;
 @thumBottom: @thumbWH - @lineHe;
 @contW: 620px;
+@ctrlHeight: 30px;
+@galHeight: @thumbWH + @ctrlHeight;
 
 
 /* Colors*/
@@ -40,10 +43,10 @@ body,html{
 	}
 }
 
-div{
-	.Lean; .BlockFix;
+#gallery{
+	.Lean; .BlockFix; .defBord;
 	background: @ColorA;
-	height: 140px;
+	height: @galHeight;
 	position:relative;
 	width:@contW;
 	left: -(@contW/2);
@@ -54,14 +57,14 @@ div{
 		left: 10px;
 	    position: absolute;
 	    top: 10px;
-	    width: 855px;
+	    width: 1000px;
 		
 		li{
-			.FLeft; .TAC;
+			.FLeft; .TAC; .Lean; .defBord;
 			display: block;
 			background: @ColorC;
-			border: solid 1px @ColorB;
 			line-height:@lineHe;
+			margin: 0 5px;
 			padding-top: @thumBottom;
 			height: @lineHe;
 			width:@thumbWH;
@@ -70,5 +73,21 @@ div{
 				.noSee;
 			}
 		}
+	}
+	.leftArrow, .rightArrow{
+		.defBord;
+		background-color: @ColorC;
+		position:relative;
+		width: @lineHe;
+		padding-top: @galHeight/2;
+		height: @galHeight/2;
+		z-index: 9999;
+		/* top: @galHeight - @lineHe; positions the controls at the bottom of the main gallery slider*/
+	}
+	.rightArrow{
+		float: right;
+	}
+	.leftArrow{
+		float: left;
 	}
 }
