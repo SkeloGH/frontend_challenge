@@ -11,31 +11,36 @@
 .FLeft{				float:left;}
 .FtWN{ 				font-weight: normal;}
 .FtWB{ 				font-weight: bold;}
-.Lean{      		.MgZ; .PgZ; .BdZ;}        /* Cleans the element */
+.Lean{      		.MgZ; .PgZ; .BdZ;}     			/* Cleans the element */
 .MgZ{				margin:0}
 .PgZ{				padding: 0}
 .Sprite(@M:0,@E:0){ background: url('../img/sprites.png') @M @E;}
 .TAC{ 				text-align: center;}
 .TAL{ 				text-align: left;}
 
-/* Measurements */
+/* Measurement settings  */
+@contW: 450px; 										/* total component width */
+@ctrlHeight: 30px; 									/* slide controls height */
+@galHeight: @thumbWH + @ctrlHeight; 				/* total component width */
+@imgStripW: (@thumbWH+12px)*5;  					/* strip width, multiply the the number of items */
+@imgStripX: ((@imgStripW/2)-@contW)*2;
 @thumbWH: 120px;
-@lineHe: 30px;
 @thumBottom: @thumbWH - @lineHe;
-@contW: 420px;
-@ctrlHeight: 30px;
-@galHeight: @thumbWH + @ctrlHeight;
+@lineHe: 30px;
 
 
-/* Colors*/
+
+/* Colors */
 @ColorA: #e6e6e6;
 @ColorB: #393939;
 @ColorC: #ffffff;
+@ColorD: #000;
 
 body,html{
 	.Altfont;
 	.TAC;
 	.Lean;
+	color: @ColorB;
 	width:100%;
 	
 	p{
@@ -44,23 +49,30 @@ body,html{
 }
 
 #gallery{
-	.Lean; .BlockFix; .defBord;
-	background: @ColorA;
+	.Lean; .BlockFix;.defBord;
+	background: @ColorB;
+	border-color: @ColorA;
+	border-radius:5px;
+	box-shadow:inset 0 0 10px @ColorD;
 	height: @galHeight;
 	position:relative;
 	width:@contW;
 	left: -(@contW/2);
 	margin: 0 0 0 50%;
 	
+	/* Image strip */
 	ul{
 		.Lean;
-		left: @lineHe;
+		left: @imgStripX/2;
 	    position: absolute;
 	    top: 10px;
-	    width: (@thumbWH+10px)*6; /* multiply by the number of elements, plus the space between elements*/
+	    width: @imgStripW; 							/*  adds the space between elements, then multiplies by the number of elements */
 		
 		li{
 			.FLeft; .TAC; .Lean; .defBord;
+			color: @ColorC;
+			border-color: @ColorA;
+			border-radius:5px;
 			display: block;
 			background: @ColorC;
 			line-height:@lineHe;
@@ -75,8 +87,7 @@ body,html{
 		}
 	}
 	.leftArrow, .rightArrow{
-		.defBord;
-		background-color: @ColorC;
+		background-color: @ColorA;
 		cursor: pointer;
 		position:relative;
 		width: @lineHe;
@@ -86,8 +97,10 @@ body,html{
 	}
 	.rightArrow{
 		float: right;
+		box-shadow: -1px 3px 4px @ColorD;
 	}
 	.leftArrow{
 		float: left;
+		box-shadow: 1px 3px 4px @ColorD;
 	}
 }

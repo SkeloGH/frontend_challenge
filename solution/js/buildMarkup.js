@@ -38,7 +38,7 @@ var galItem = {
 			$(this).removeClass('active');
 			
 
-			var newLeft = parseInt(that.container.css('left'))-that.thumbWidth-12; // 10px margin and 1px border each side
+			var newLeft = parseInt(that.container.css('left'))-that.thumbWidth-12; // displacement amount 10px margin and 1px border each side
 			
 			that.container.animate({left:newLeft},function(){
 				that.container.children(':first').appendTo(that.container);
