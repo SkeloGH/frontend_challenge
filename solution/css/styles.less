@@ -54,10 +54,10 @@ body,html{
 	
 	ul{
 		.Lean;
-		left: 10px;
+		left: @lineHe;
 	    position: absolute;
 	    top: 10px;
-	    width: 1000px;
+	    width: (@thumbWH+10px)*6; /* multiply by the number of elements, plus the space between elements*/
 		
 		li{
 			.FLeft; .TAC; .Lean; .defBord;
@@ -77,12 +77,12 @@ body,html{
 	.leftArrow, .rightArrow{
 		.defBord;
 		background-color: @ColorC;
+		cursor: pointer;
 		position:relative;
 		width: @lineHe;
 		padding-top: @galHeight/2;
 		height: @galHeight/2;
 		z-index: 9999;
-		/* top: @galHeight - @lineHe; positions the controls at the bottom of the main gallery slider*/
 	}
 	.rightArrow{
 		float: right;
