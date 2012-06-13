@@ -5,10 +5,11 @@
 .noSee{ 			display: none;}
 .Altfont{ 			font-family: "Calibri";}
 .BlockFix{			display: block; overflow: hidden}
-.defBord{ 			border: solid 1px @ColorB; }
+.defBord{ 			border: solid 1px @ColorB; border-radius:5px;  }
 .BdZ{ 				border: none; }
 .ClearFix { 		clear: both;}
 .FLeft{				float:left;}
+.FRight{			float:right;}
 .FtWN{ 				font-weight: normal;}
 .FtWB{ 				font-weight: bold;}
 .Lean{      		.MgZ; .PgZ; .BdZ;}     			/* Cleans the element */
@@ -17,16 +18,24 @@
 .Sprite(@M:0,@E:0){ background: url('../img/sprites.png') @M @E;}
 .TAC{ 				text-align: center;}
 .TAL{ 				text-align: left;}
+.TAR{ 				text-align: right;}
 
-/* Measurement settings  */
-@contW: 450px; 										/* total component width */
-@ctrlHeight: 30px; 									/* slide controls height */
-@galHeight: @thumbWH + @ctrlHeight; 				/* total component width */
-@imgStripW: (@thumbWH+12px)*5;  					/* strip width, multiply the the number of items */
-@imgStripX: ((@imgStripW/2)-@contW)*2;
-@thumbWH: 120px;
-@thumBottom: @thumbWH - @lineHe;
+/** Measurement settings  **/
+/* stage */
 @lineHe: 30px;
+@miniImgStripW: (@miniThumbWH+@miniThumbMargin)*10;  					/* mini strip width, multiply by the number of items */
+@miniThumbMargin: @lineHe*0.05;
+@stageW: (@contW)-(@lineHe*2);
+@miniThumbWH: @lineHe*2; 		  					/* mini thumbnail width, multiply the number of items */
+
+
+/* main strip */
+@contW: 450px; 										/* total component width */
+@imgStripW: (@thumbWH+12)*5;  					/* strip width, multiply the number of items */
+@imgStripX: -((@imgStripW)-(@contW))/2;
+@galHeight: @thumbWH + @lineHe; 				/* strip height */
+@thumbWH: 120px;
+
 
 
 
@@ -37,14 +46,47 @@
 @ColorD: #000;
 
 body,html{
-	.Altfont;
-	.TAC;
-	.Lean;
+	.Altfont;.TAC;.Lean;
 	color: @ColorB;
 	width:100%;
 	
-	p{
-		.TAL;
+	p{.TAL;	}
+}
+
+#stage{
+	background: @ColorB;
+	border-radius:5px 5px 0 0;
+	box-shadow:inset 0 0 10px @ColorD;
+	height: auto;
+	position:relative;
+	width:@stageW;
+	left: -(@stageW/2);
+	margin: 0 0 0 50%;
+	overflow: auto;
+	
+	img{
+		.defBord;
+		max-width: (@stageW)-(@stageW*0.1);
+		margin: (@stageW*0.05) 0;
+	}
+	ul{
+		.Lean;
+		width: @miniImgStripW;
+		height:auto;
+
+		li{
+			.Lean;
+			display: inline;
+			list-style: none;
+			
+			img{
+				.defBord;
+				max-width: @miniThumbWH;
+				height: @lineHe*1.5;
+				border-color: @ColorA;
+				margin: @miniThumbMargin;
+			}
+		}
 	}
 }
 
@@ -52,7 +94,6 @@ body,html{
 	.Lean; .BlockFix;.defBord;
 	background: @ColorB;
 	border-color: @ColorA;
-	border-radius:5px;
 	box-shadow:inset 0 0 10px @ColorD;
 	height: @galHeight;
 	position:relative;
@@ -63,21 +104,20 @@ body,html{
 	/* Image strip */
 	ul{
 		.Lean;
-		left: @imgStripX/2;
+		left: @imgStripX;
 	    position: absolute;
 	    top: 10px;
 	    width: @imgStripW; 							/*  adds the space between elements, then multiplies by the number of elements */
 		
 		li{
-			.FLeft; .TAC; .Lean; .defBord;
+			.FLeft; .TAR; .Lean; .defBord;
 			color: @ColorC;
 			border-color: @ColorA;
-			border-radius:5px;
 			display: block;
 			background: @ColorC;
 			line-height:@lineHe;
 			margin: 0 5px;
-			padding-top: @thumBottom;
+			padding-top: @thumbWH - @lineHe;
 			height: @lineHe;
 			width:@thumbWH;
 
@@ -96,11 +136,11 @@ body,html{
 		z-index: 9999;
 	}
 	.rightArrow{
-		float: right;
+		.FRight;
 		box-shadow: -1px 3px 4px @ColorD;
 	}
 	.leftArrow{
-		float: left;
+		.FLeft;
 		box-shadow: 1px 3px 4px @ColorD;
 	}
 }

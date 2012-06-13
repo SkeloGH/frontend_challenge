@@ -47,7 +47,6 @@ var galItem = {
 			});
 
 			
-
 		});
 
 		$('.rightArrow.active').live('click',function(){
