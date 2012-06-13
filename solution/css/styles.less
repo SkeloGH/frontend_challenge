@@ -23,17 +23,17 @@
 /** Measurement settings  **/
 /* stage */
 @lineHe: 30px;
-@miniImgStripW: (@miniThumbWH+@miniThumbMargin)*10;  					/* mini strip width, multiply by the number of items */
-@miniThumbMargin: @lineHe*0.05;
+@miniImgStripW: (@miniThumbW+@miniThumbMargin)*10; /* mini strip width, multiply by the number of items */
+@miniThumbMargin: @lineHe*0.05; 					/* margin of each mini thumbnail */
 @stageW: (@contW)-(@lineHe*2);
-@miniThumbWH: @lineHe*2; 		  					/* mini thumbnail width, multiply the number of items */
-
+@miniThumbW: @lineHe*2; 		  					/* mini thumbnail width */
+@miniThumbH: @lineHe*1.5;
 
 /* main strip */
 @contW: 450px; 										/* total component width */
-@imgStripW: (@thumbWH+12)*5;  					/* strip width, multiply the number of items */
+@imgStripW: (@thumbWH+12)*5;  						/* strip width, multiply the number of items */
 @imgStripX: -((@imgStripW)-(@contW))/2;
-@galHeight: @thumbWH + @lineHe; 				/* strip height */
+@galHeight: @thumbWH + @lineHe; 					/* strip height */
 @thumbWH: 120px;
 
 
@@ -62,17 +62,34 @@ body,html{
 	width:@stageW;
 	left: -(@stageW/2);
 	margin: 0 0 0 50%;
-	overflow: auto;
+	overflow: hidden;
 	
 	img{
 		.defBord;
 		max-width: (@stageW)-(@stageW*0.1);
 		margin: (@stageW*0.05) 0;
 	}
+	a{	.defBord;
+		cursor: pointer;
+		border-color:@ColorB;
+		background-color: @ColorA;
+		position: absolute;
+		width: @lineHe;
+		bottom:6px;
+		height: @miniThumbH;
+
+		&.miniThumbsR{
+			right:0;
+		}
+		&.miniThumbsL{
+			left:0;
+		}
+	}
 	ul{
 		.Lean;
 		width: @miniImgStripW;
 		height:auto;
+
 
 		li{
 			.Lean;
@@ -81,8 +98,8 @@ body,html{
 			
 			img{
 				.defBord;
-				max-width: @miniThumbWH;
-				height: @lineHe*1.5;
+				max-width: @miniThumbW;
+				height: @miniThumbH;
 				border-color: @ColorA;
 				margin: @miniThumbMargin;
 			}
