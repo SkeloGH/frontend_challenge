@@ -43,10 +43,25 @@ var galItem = {
 		});
 
 		this.node.find(".gal-thumb").click(function(){
-			console.log($(this).css("background-image"));
-			that.lightbox.fadeIn();
+			var images = $(this).find("ul li");
 
+			that.lightbox.fadeIn()
+						 .find("#stage ul")
+						 .html(images.clone());			
 		});
+
+		this.lightbox.find(".gal-thumb").click(function(){
+			var images = $(this).find("ul li");
+
+			that.lightbox.find("#stage ul")
+						 .html(images.clone());	
+		});
+
+		$(".close").click(function(){
+			$("#lightbox").fadeOut();
+		});
+
+
 
 
 

@@ -57,14 +57,17 @@ body,html{
 	p{.TAL;	}
 }
 
-#lightbox{
+#lightbox, .close{
 	position:absolute;
 	top:0;
 	left: 0;
 	width:100%;
 	height:100%;
-	background: rgba(0,0,0,0.8);
-	z-index: 999999;
+	background: rgba(0,0,0,0.4);
+	z-index: 9999;
+	.close{
+		z-index: 98;
+	}
 }
 
 #stage{
@@ -87,7 +90,7 @@ body,html{
 	 	overflow: hidden;
 	 	position:relative;
 	 	left: @stageStripX;
-	 	z-index: 1;
+	 	z-index: 99;
 
 		li{
 			.FLeft;
