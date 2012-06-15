@@ -5,14 +5,26 @@ var galItem = {
 		this.lightbox = lightbox;
 		var textBuffer = "";
 
+
+
 		/* re-arrange the items to show the first on the list*/
 		data.unshift(data[data.length-1]);
-		data.pop()
+		data.pop();
+		
+		
+
+		$.each(data, function(i, gallery){/* parameters are automatically passed by jQuery */
+			var images = gallery.images;
+			
+			images.unshift(images[images.length-1]);
+			images.pop();
+			
+		});
 
 		// build buffer
-		$.each(data, function(i, gallery){
+		$.each(data, function(i, gallery){/* parameters are automatically passed by jQuery */
 			var galleryItems = "";
-			
+
 			$.each(gallery.images, function(i, image){
 				galleryItems += '<li><img src="img/'+image+'"></li>'
 			});
@@ -79,7 +91,7 @@ var galItem = {
 		console.log(newPos);
 
 		container.animate({left: newPos},function(){
-			container = $(this);
+			var container = $(this);
 
 			if (direction === 1) {
 				container.children(':last').prependTo(container);
