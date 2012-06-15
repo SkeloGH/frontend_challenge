@@ -1,9 +1,13 @@
 var galItem = {
 	
-	init: function(data, template, node){
+	init: function(data, template, node, lightbox){
 		this.node = node;
-		this.container = node.find('.galleries-container');
+		this.lightbox = lightbox;
 		var textBuffer = "";
+
+		/* re-arrange the items to show the first on the list*/
+		data.unshift(data[data.length-1]);
+		data.pop()
 
 		// build buffer
 		$.each(data, function(i, gallery){
@@ -20,56 +24,64 @@ var galItem = {
 		});
 
 		//fill the gallery
-		this.container.html(textBuffer);
-		this.thumbWidth = this.container.children(':eq(0)').width();
+		this.node.find('.galleries-container').html(textBuffer);
+		this.lightbox.find('.galleries-container').html(textBuffer);
 		
 
 		this.binding();
 	},
 
 	binding: function(){
+
 		var that = this;
-		var oldLeft = that.container.css('left');
 
-		this.leftArrow = this.node.find('.leftArrow');
-		this.rightArrow = this.node.find('.rightArrow');
+		$('.rightArrow.active, .lb-rightArrow.active, .goRight.active').live('click',function(){
+			 that.scroll(this, $(this).parent().find("ul"), "r");
+		});
+		$('.leftArrow.active, .lb-leftArrow.active, .goLeft.active').live('click',function(){
+			 that.scroll(this, $(this).parent().find("ul"), "l");
+		});
+
+		this.node.find(".gal-thumb").click(function(){
+			console.log($(this).css("background-image"));
+			that.lightbox.fadeIn();
+
+		});
+
+
+
+		// console.log(this.rightArrow);
+	},
+
+	scroll: function(context, container, direction){
 		
-		$('.leftArrow.active').live('click',function(){
-			$(this).removeClass('active');
-			
+		var oldLeft = container.css('left');
+		var thumbWidth = container.children().outerWidth(true);
+		var direction = direction === "l" ? -1 : 1;
+		console.log(direction);
 
-			var newLeft = parseInt(that.container.css('left'))-that.thumbWidth-12; // displacement amount 10px margin and 1px border each side
-			
-			that.container.animate({left:newLeft},function(){
-				that.container.children(':first').appendTo(that.container);
-				that.container.css('left',oldLeft);
-				that.leftArrow.addClass('active');
-			});
+		var newPos = (parseInt(container.css('left'))+(thumbWidth*direction));
+		console.log(newPos);
 
-			
+		container.animate({left: newPos},function(){
+			container = $(this);
+
+			if (direction === 1) {
+				container.children(':last').prependTo(container);
+			}else{
+				container.children(':first').appendTo(container);
+			}
+
+			container.css('left',oldLeft);				
+			$(context).addClass('active');
 		});
-
-		$('.rightArrow.active').live('click',function(){
-			$(this).removeClass('active');
-
-			var newRight = parseInt(that.container.css('left'))+that.thumbWidth+12;
-
-			that.container.animate({left:newRight},function(){
-				that.container.children(':last').prependTo(that.container);
-				that.container.css('left',oldLeft);
-				that.rightArrow.addClass('active');
-			});
-		});
-
-		console.log(this.rightArrow);
 	}
+
 }
 
 
 
 
 $(document).ready(function(){
- 	galItem.init(incomingData, $(".liTemp").text(), $("#gallery"));
-
-
+ 	galItem.init(incomingData, $(".liTemp").text(), $("#gallery"), $("#lightbox"));
 });

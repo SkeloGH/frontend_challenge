@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="js/data.js"></script>
 	<script type="text/javascript" src="js/buildMarkup.js"></script>
 	<script type="text/template" class="liTemp">
-		<li style="background-image:url(img/{{album_thumb}})">
+		<li class="gal-thumb" style="background-image:url(img/{{album_thumb}})">
 			{{name}}
 			<ul>
 				{{gallery_items}}
@@ -18,29 +18,45 @@
 	</script>
 </head>
 <body>
+	<div id="lightbox" style="display:none">
+		<div id="stage">
+			<a class="goLeft active">&lt;</a>
+			<ul>
+				<li><img src="img/dogs/img-01.png"></li>
+				<li><img src="img/dogs/img-02.png"></li>
+				<li><img src="img/dogs/img-03.png"></li>
+				<li><img src="img/dogs/img-04.png"></li>
+				<li><img src="img/dogs/img-05.png"></li>
+				<li><img src="img/dogs/img-06.png"></li>
+				<li><img src="img/dogs/img-07.png"></li>
+				<li><img src="img/dogs/img-08.png"></li>
+				<li><img src="img/dogs/img-09.png"></li>
+				<li><img src="img/dogs/img-10.png"></li>
+			</ul>
+			<a class="goRight active">&gt;</a>
+		</div>
+		<div id="lb-gallery" class="gallery"><!-- container -->
+			<a class="lb-leftArrow active">&lt;</a>
+			<ul class="galleries-container"><!-- mask -->
+				
+			</ul>
+			<a class="lb-rightArrow active">&gt;</a>
+		</div>
+	</div>
 	<h1>Heading text</h1>
 
 	<p>Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see.</p>
 
 	<p>Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, </p>
-	<div id="stage">
-		<img src="img/dogs/img-01.png">
-		<a class="miniThumbsL active">&lt;</a>
-		<ul>
-			<li><img src="img/dogs/img-01.png"></li>
-			<li><img src="img/dogs/img-02.png"></li>
-			<li><img src="img/dogs/img-03.png"></li>
-			<li><img src="img/dogs/img-04.png"></li>
-			<li><img src="img/dogs/img-05.png"></li>
-			<li><img src="img/dogs/img-06.png"></li>
-			<li><img src="img/dogs/img-07.png"></li>
-			<li><img src="img/dogs/img-08.png"></li>
-			<li><img src="img/dogs/img-09.png"></li>
-			<li><img src="img/dogs/img-10.png"></li>
-		</ul>
-		<a class="miniThumbsR active">&gt;</a>
-	</div>
-	<div id="gallery"><!-- container -->
+
+
+	<h2>second heading text</h2>
+
+	<p>Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see.</p>
+
+	<p>Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, </p>
+	
+	<div id="gallery" class="gallery"><!-- container -->
 		<a class="leftArrow active">&lt;</a>
 		<ul class="galleries-container"><!-- mask -->
 			
@@ -48,10 +64,5 @@
 		<a class="rightArrow active">&gt;</a>
 	</div>
 
-	<h2>second heading text</h2>
-
-	<p>Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see.</p>
-
-	<p>Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, Just a paragraph with some random text to see, </p>
 </body>
 </html>
