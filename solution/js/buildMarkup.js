@@ -80,10 +80,12 @@ var galItem = {
 			var images = $(this).find("ul li");
 			// Make the lightbox appear,
 			that.lightbox.fadeIn()
+						 .css("top",window.scrollY)
 						// find where is going to place the images,
 						 .find("#stage ul")
 						 // fill the stage with them.
-						 .html(images.clone());			
+						 .html(images.clone());
+			$("body").css("overflow", "hidden");
 		});
 		// lightbox is active
 		// now do the same while lightbox is active, when clicking an item:
@@ -98,6 +100,7 @@ var galItem = {
 		// each time you click outside the lightbox, it'll dissapear
 		$(".close").click(function(){
 			$("#lightbox").fadeOut();
+			$("body").css("overflow", "auto");
 		});
 	},
 	/* SCROLLING ENGINE, receives values from: -EVENT HANDLER for scroller */
