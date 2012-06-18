@@ -1,4 +1,4 @@
-var incomingData= [
+var albumData= [
 	{
 		name: 'Birds',
 		album_thumb: 'birds/thumb.jpg',

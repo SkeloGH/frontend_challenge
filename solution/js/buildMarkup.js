@@ -141,6 +141,13 @@ var galItem = {
 
 
 $(document).ready(function(){
-	//             data,          template,           node,         lightbox
- 	galItem.init(incomingData, $(".liTemp").text(), $("#gallery"), $("#lightbox"));
+	/* output placeholders */
+	var templateId = $(".liTemp").text();
+	var nodeId = $(".gallery");
+	var lightBoxId = $("#lightbox");
+	
+	/* next step is: make it able to receive from more data sources */
+	var incomingData1 = albumData;
+
+ 	galItem.init(incomingData1, templateId, nodeId, lightBoxId);
 });
